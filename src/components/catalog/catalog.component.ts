@@ -1,7 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {products} from "../../data/products.data";
 import {Product} from "../../models/product";
 import {ProductCartComponent} from "../product-cart/product-cart.component";
+import {DataSharingService} from "../../services/data-sharing.service";
+import {Store} from "@ngrx/store";
+import {load} from "../../store/products.actions";
 
 @Component({
   selector: 'app-catalog',
@@ -10,13 +13,24 @@ import {ProductCartComponent} from "../product-cart/product-cart.component";
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.css'
 })
-export class CatalogComponent {
-  title = 'Product List';
-  @Input() product!: Product[];
-  @Output() productEvent: EventEmitter<Product> = new EventEmitter();
+export class CatalogComponent implements OnInit {
+  product!: Product[];
+
+  constructor(
+    private dataSharingService: DataSharingService,
+    private store: Store<{ products: any }>) {
+    this.store.select('products').subscribe(state => this.product = state.products)
+  }
+
+  ngOnInit(): void {
+    this.store.dispatch(load())
+  }
 
   onAddCart(product: Product) {
-    this.productEvent.emit(product);
+    this.dataSharingService.productEvent.emit(product);
   }
+
   protected readonly products = products;
+
+
 }

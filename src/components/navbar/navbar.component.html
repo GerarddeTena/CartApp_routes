@@ -3,10 +3,14 @@
     <div class="Navbar_Group">
       <ul>
         <li>
-          <a href="#" aria-current="page">Home</a>
+          <a
+            [routerLink]="['/catalog']"
+            role="button">Catalog</a>
         </li>
         <li>
-          <a (click)="setShowCart()">Cart {{items.length}}</a>
+          <a
+            [routerLink]="['/cart']"
+            role="button"> Cart {{ items.length }}</a>
         </li>
       </ul>
     </div>

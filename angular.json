@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "untitled2": {
+    "CartApp_routes": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/untitled2",
+            "outputPath": "dist/CartApp_routes",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -45,7 +45,8 @@
                   "maximumError": "4kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/CartApp_routes/"
             },
             "development": {
               "optimization": false,
@@ -59,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "untitled2:build:production"
+              "buildTarget": "CartApp_routes:build:production"
             },
             "development": {
-              "buildTarget": "untitled2:build:development"
+              "buildTarget": "CartApp_routes:build:development"
             }
           },
           "defaultConfiguration": "development"
